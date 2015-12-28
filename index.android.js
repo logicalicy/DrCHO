@@ -3,18 +3,10 @@
  */
 'use strict';
 
-var React = require('react-native');
-var FoodListComponent = require('./FoodListComponent');
+import React from 'react-native';
+import App from './app/containers/App';
 var {
       AppRegistry
 } = React;
 
-var DrCHO = React.createClass({
-    render: function() {
-        return (
-            <FoodListComponent />
-        );
-    }
-});
-
-AppRegistry.registerComponent('DrCHO', () => DrCHO);
+AppRegistry.registerComponent('DrCHO', () => App);
