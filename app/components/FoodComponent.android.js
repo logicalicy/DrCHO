@@ -1,7 +1,6 @@
 'use strict';
 
-var React = require('react-native');
-var {
+import React, {
     PropTypes,
     StyleSheet,
     TouchableHighlight,
@@ -9,33 +8,8 @@ var {
     Text,
     View,
     ListView,
-} = React;
-
-var FoodComponent = React.createClass({
-    propTypes: {
-        rowID: PropTypes.number,
-        foodName: PropTypes.string
-    },
-    _renderDetailedComponent: function () {
-        // Stub
-    },
-    render: function() {
-        // TODO: Add 'source' attribute to <Image /> component.
-        return (
-            <TouchableHighlight onPress={this._renderDetailedComponent}>
-                <View>
-                    <View style={styles.row}>
-                        <Image style={styles.thumb} />
-                        <Text style={styles.text}>
-                            {this.props.foodName}
-                        </Text>
-                    </View>
-                    <View style={styles.separator} />
-                </View>
-            </TouchableHighlight>
-        );
-    }
-});
+    Component
+} from 'react-native';
 
 var styles = StyleSheet.create({
     row: {
@@ -54,7 +28,34 @@ var styles = StyleSheet.create({
     },
     text: {
         flex: 1,
+        marginLeft: 10
     },
 });
 
-module.exports = FoodComponent;
+export default class FoodComponent extends Component {
+    propTypes: {
+        rowID: PropTypes.number,
+        foodName: PropTypes.string
+    }
+
+    _renderDetailedComponent() {
+        // Stub
+    }
+
+    render() {
+        // TODO: Add 'source' attribute to <Image /> component.
+        return (
+            <TouchableHighlight onPress={this._renderDetailedComponent}>
+                <View>
+                    <View style={styles.row}>
+                        <Image style={styles.thumb} />
+                        <Text style={styles.text}>
+                            {this.props.foodName}
+                        </Text>
+                    </View>
+                    <View style={styles.separator} />
+                </View>
+            </TouchableHighlight>
+        );
+    }
+}
