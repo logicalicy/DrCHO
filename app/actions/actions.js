@@ -6,9 +6,9 @@ import * as types from './actionTypes';
 //     type: types.ACTION_NAME
 //   };
 // }
-export function search(term) {
+export function search(searchTerm) {
   return {
     type: types.SEARCH,
-    term
+    searchTerm
   };
 }

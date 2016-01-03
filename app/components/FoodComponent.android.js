@@ -48,7 +48,6 @@ export default class FoodComponent extends Component {
             <TouchableHighlight onPress={this._renderDetailedComponent}>
                 <View>
                     <View style={styles.row}>
-                        <Image style={styles.thumb} />
                         <Text style={styles.text}>
                             {this.props.foodName}
                         </Text>

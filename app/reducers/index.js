@@ -1,4 +1,4 @@
-import search from './search';
+import foodList from './foodList';
 
 // Add/import reducers:
 // const initialState = {};
@@ -12,5 +12,5 @@ import search from './search';
 // export { reducer };
 
 export {
-  search
+    foodList
 };

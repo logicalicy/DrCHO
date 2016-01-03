@@ -39,7 +39,7 @@ export default class FoodListComponent extends Component {
     }
     render() {
         const { store } = this.context;
-        const searchTerm = store.getState().search.term;
+        const searchTerm = store.getState().foodList.searchTerm;
         const filtered_foods = utils.filterFoodsBy(searchTerm);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         const dataSource = ds.cloneWithRows(filtered_foods);
