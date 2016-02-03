@@ -7,8 +7,15 @@ import * as types from './actionTypes';
 //   };
 // }
 export function search(searchTerm) {
-  return {
-    type: types.SEARCH,
-    searchTerm
-  };
+    return {
+        type: types.SEARCH,
+        searchTerm
+    };
+}
+
+export function sort(sortBy) {
+    return {
+        type: types.SORT,
+        sortBy
+    };
 }
