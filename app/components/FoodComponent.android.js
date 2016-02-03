@@ -12,6 +12,7 @@ import React, {
 } from 'react-native';
 
 import * as constants from '../constants/constants';
+import FoodDetailComponent from '../components/FoodDetailComponent';
 
 var styles = StyleSheet.create({
     row: {
@@ -104,11 +105,16 @@ var _style = function(food, sortBy) {
 export default class FoodComponent extends Component {
     propTypes: {
         rowID: PropTypes.number,
-        foodName: PropTypes.string
+        foodName: PropTypes.string,
+        navigator: PropTypes.object
     }
 
     _renderDetailedComponent() {
-        // Stub
+        this.props.navigator.push({
+            title: this.props.foodName,
+            name: 'detail',
+            foodName: this.props.foodName
+        });
     }
 
     renderStat() {
@@ -125,8 +131,9 @@ export default class FoodComponent extends Component {
 
     render() {
         // TODO: Add 'source' attribute to <Image /> component.
+        console.log('food component');
         return (
-            <TouchableHighlight onPress={this._renderDetailedComponent}>
+            <TouchableHighlight onPress={this._renderDetailedComponent.bind(this)}>
                 <View>
                     <View style={styles.row}>
                         <Text style={styles.text}>

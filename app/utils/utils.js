@@ -17,5 +17,11 @@ export default utils = {
             default:
                 return filtered_foods;
         }
+    },
+    getByName(name) {
+        const match = _.find(foods, (food) => {
+            return food["Food name"] === name;
+        });
+        return match;
     }
 }

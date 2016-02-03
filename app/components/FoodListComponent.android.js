@@ -26,6 +26,9 @@ var styles = StyleSheet.create({
 });
 
 export default class FoodListComponent extends Component {
+    propTypes: {
+        navigator: PropTypes.object
+    }
     componentDidMount() {
         const { store } = this.context;
         this.unsubscribe = store.subscribe(() =>
@@ -41,7 +44,8 @@ export default class FoodListComponent extends Component {
                 foodName={rowData["Food name"]}
                 cho={rowData["CHO (g/100g)"]}
                 giValue={rowData["GI value"]}
-                gl={rowData["GL"]} />
+                gl={rowData["GL"]}
+                navigator={this.props.navigator} />
         );
     }
     toolbarActions() {
@@ -73,7 +77,7 @@ export default class FoodListComponent extends Component {
                 <SearchComponent />
                 <ListView
                     dataSource={dataSource}
-                    renderRow={this._renderRow}>
+                    renderRow={this._renderRow.bind(this)}>
                 </ListView>
             </View>
         );
