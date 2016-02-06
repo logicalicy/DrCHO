@@ -131,7 +131,6 @@ export default class FoodComponent extends Component {
 
     render() {
         // TODO: Add 'source' attribute to <Image /> component.
-        console.log('food component');
         return (
             <TouchableHighlight onPress={this._renderDetailedComponent.bind(this)}>
                 <View>

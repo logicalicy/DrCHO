@@ -22,8 +22,39 @@ var styles = StyleSheet.create({
     },
     toolbar: {
         height: 50
+    },
+    sort: {
+        padding: 10,
+        backgroundColor: '#337ab7'
+    },
+    sortText: {
+        color: 'white',
     }
 });
+
+var _renderSort = function (sortBy) {
+    var sort;
+    switch (sortBy) {
+        case constants.SORT_BY_NAME:
+            return null;
+        case constants.SORT_BY_CHO:
+            sort = 'Sorted by CHO (g/100g)';
+            break;
+        case constants.SORT_BY_GI_VALUE:
+            sort = 'Sorted by GI Value';
+            break;
+        case constants.SORT_BY_GI_LOAD:
+            sort = 'Sorted by GI Load';
+            break;
+    }
+    return (
+        <View style={styles.sort}>
+            <Text style={styles.sortText}>
+                {sort}
+            </Text>
+        </View>
+    );
+};
 
 export default class FoodListComponent extends Component {
     propTypes: {
@@ -74,6 +105,7 @@ export default class FoodListComponent extends Component {
                 <ToolbarAndroid style={styles.toolbar} title={'Dr CHO'}
                     actions={this.toolbarActions()}
                     onActionSelected={(position) => store.dispatch(sort(sortOrder[position]))} />
+                {_renderSort(sortBy)}
                 <SearchComponent />
                 <ListView
                     dataSource={dataSource}
