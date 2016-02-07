@@ -3,6 +3,7 @@ import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux/native';
 
 import * as reducers from '../reducers';
+import AboutComponent from '../components/AboutComponent';
 import FoodListComponent from '../components/FoodListComponent';
 import FoodDetailComponent from '../components/FoodDetailComponent';
 
@@ -23,6 +24,9 @@ var RouteMapper = function(route, navigationOperations, onComponentRef) {
     _navigator = navigationOperations;
     if (route.name === 'detail') {
         return (<FoodDetailComponent foodName={route.foodName} navigator={_navigator} />);
+    }
+    if (route.name === 'about') {
+        return (<AboutComponent />);
     }
     // Default route.
     return (

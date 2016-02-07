@@ -16,6 +16,8 @@ import utils from '../utils/utils';
 import SearchComponent from './SearchComponent';
 import FoodComponent from './FoodComponent';
 
+import _ from 'lodash';
+
 var styles = StyleSheet.create({
     container: {
         flex: 1
@@ -35,8 +37,6 @@ var styles = StyleSheet.create({
 var _renderSort = function (sortBy) {
     var sort;
     switch (sortBy) {
-        case constants.SORT_BY_NAME:
-            return null;
         case constants.SORT_BY_CHO:
             sort = 'Sorted by CHO (g/100g)';
             break;
@@ -46,6 +46,9 @@ var _renderSort = function (sortBy) {
         case constants.SORT_BY_GI_LOAD:
             sort = 'Sorted by GI Load';
             break;
+    }
+    if (! sort) {
+        return null;
     }
     return (
         <View style={styles.sort}>
@@ -81,11 +84,22 @@ export default class FoodListComponent extends Component {
     }
     toolbarActions() {
         return [
+            {title: 'About'},
             {title: 'Sort by name'},
             {title: 'Sort by CHO'},
             {title: 'Sort by GI Value'},
             {title: 'Sort by GI Load'},
         ]
+    }
+    onActionSelected(position, store, sortOrder) {
+        if (position === 0) {
+            this.props.navigator.push({
+                name: 'about'
+            });
+        }
+        else {
+            store.dispatch(sort(sortOrder[position - 1]));
+        }
     }
     render() {
         const { store } = this.context;
@@ -104,7 +118,7 @@ export default class FoodListComponent extends Component {
             <View style={styles.container}>
                 <ToolbarAndroid style={styles.toolbar} title={'Dr CHO'}
                     actions={this.toolbarActions()}
-                    onActionSelected={(position) => store.dispatch(sort(sortOrder[position]))} />
+                    onActionSelected={_.partial(this.onActionSelected.bind(this), _, store, sortOrder)} />
                 {_renderSort(sortBy)}
                 <SearchComponent />
                 <ListView
