@@ -1,6 +1,7 @@
 # Dr CHO
 
 Your mobile reference for carbohydrate content and GI Load of various foods.
+Written with [React Native](https://facebook.github.io/react-native/) and [Redux](https://github.com/rackt/redux).
 
 ## Contributing
 
